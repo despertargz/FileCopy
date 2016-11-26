@@ -73,11 +73,11 @@ namespace CopyFiles
             File.AppendAllText("session.txt", DateTime.Now + ": Started: " + SrcRoot + " -> " + DesRoot + "\r\n");
             Watch = Stopwatch.StartNew();
 
-            int numThreads = 1;
+            int numThreads = 3;
             for (int x=0; x < numThreads; x++)
             {
                 //Task.Factory.StartNew(CopyFileDiskToDiskThread, TaskCreationOptions.LongRunning);
-                Task.Factory.StartNew(CopyFileFromMemoryThread, TaskCreationOptions.LongRunning);
+                //Task.Factory.StartNew(CopyFileFromMemoryThread, TaskCreationOptions.LongRunning);
             }
 
 
@@ -123,8 +123,8 @@ namespace CopyFiles
                     TotalSize += fileSize;
 
 
-                    //CopyFileNormal(file);
-                    CopyFileViaStream(file);
+                    CopyFileNormal(file);
+                    //CopyFileViaStream(file);
                     //MemoryToDiskQueue.Enqueue(Tuple.Create(file, File.ReadAllBytes(file)));
                     //DiskToDiskQueue.Enqueue(file);
 
